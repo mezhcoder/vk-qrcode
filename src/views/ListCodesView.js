@@ -1,18 +1,24 @@
 import React from "react";
-import {Div, Button, Group, Panel, PanelHeader, View, CardGrid, Card} from "@vkontakte/vkui";
+import { Group, Panel, View} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
 
 bridge.subscribe((e) => bridgeEvent(e));
 
+let CodesContext = React.createContext('test');
+
+
 function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
         const arr = e.detail.data.keys;
-        console.log("Переменные:", arr);
+        CodesContext = React.createContext(arr);
     }
 }
 
 function QRCodeView() {
-    bridge.send("VKWebAppStorageGetKeys", {"count": 1000, "offset": 0});
+
+    console.log("Список кодов:", React.useContext(CodesContext));
+    // const [activeView, setActiveView] = useState('f');
+    // bridge.send("VKWebAppStorageGetKeys", {"count": 1000, "offset": 0});
     return (
         <View activePanel="main" id="view2">
             <Panel id="main">
