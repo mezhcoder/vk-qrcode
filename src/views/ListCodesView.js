@@ -12,7 +12,7 @@ function bridgeEvent(e) {
 }
 
 function QRCodeView() {
-    bridge.send("VKWebAppStorageGetKeys", {"count": 549755813888, "offset": 0});
+    bridge.send("VKWebAppStorageGetKeys", {"count": 1000, "offset": 0});
     return (
         <View activePanel="main" id="view2">
             <Panel id="main">
