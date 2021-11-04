@@ -1,25 +1,43 @@
-// import React, { useState } from 'react';
-
+import React from 'react';
 
 import './App.css';
 import bridge from '@vkontakte/vk-bridge';
 
-function send() {
-    bridge.send("VKWebAppOpenCodeReader");
-    console.log('hello world!');
-}
+import QRCodeView from './views/QRCodeView'
+
+import {
+    AdaptivityProvider,
+    ConfigProvider,
+    useAdaptivity,
+    AppRoot,
+    SplitLayout,
+    SplitCol,
+    ViewWidth,
+    PanelHeader,
+} from "@vkontakte/vkui";
+import "@vkontakte/vkui/dist/vkui.css";
+
+bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
+
+function App() {
+    const { viewWidth } = useAdaptivity();
+
+    return (
+
+        <ConfigProvider>
+            <AdaptivityProvider>
+                <AppRoot>
+                    <SplitLayout header={<PanelHeader separator={false} />}>
+                        <SplitCol spaced={viewWidth && viewWidth > ViewWidth.MOBILE}>
+                            <QRCodeView/>
+                        </SplitCol>
+                    </SplitLayout>
+                </AppRoot>
+            </AdaptivityProvider>
+        </ConfigProvider>
 
 
-function App(props) {
-  return (
-    <div className="App">
-      <h1>QR Code scanner</h1>
-      {/*<p>Вы кликнули {count} раз(а)</p>*/}
-      <button onClick={() => send()}>
-          Отсканировать
-      </button>
-    </div>
-  );
+    );
 }
 
 export default App;
