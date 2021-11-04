@@ -1,11 +1,8 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Div, Button, Group, Panel, View, CardGrid, Card} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
 
 const sha1 = require('js-sha256');
-
-
-let activeQRCode = React.createContext(false);
 
 function showFrameQR() {
     console.log("Отправлен Show");
@@ -15,9 +12,8 @@ function showFrameQR() {
 function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
         let url = e.detail.data.code_data.toString();
-        console.log("URL получен: " + url);
+        alert("QR код считан")
         bridge.send("VKWebAppStorageSet", {"key": sha1(url), "value": url});
-        activeQRCode = React.createContext(true);
     }
 
     if (e.detail.type === 'VKWebAppStorageSetFailed') {
@@ -39,7 +35,6 @@ function QRCodeView() {
                                     <Button style={{height: "70px"}} mode="outline" size="l" >Сканировать QR код</Button>
                                 </Div>
                             </div>
-                            {React.useContext(activeQRCode) ? <p style={{color: "green"}}>QR код загружен</p> : ""}
                         </Card>
                     </CardGrid>
                 </Group>
