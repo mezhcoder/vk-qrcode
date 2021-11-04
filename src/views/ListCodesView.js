@@ -17,10 +17,10 @@ const myFunction = () => {
             if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
                 // setCodes(e.detail.data.keys);
                 console.log("запрос +1");
+                bridge.unsubscribe(this);
                 resolve(e.detail.data.keys);
             }
         }
-
     });
 };
     // fetch("https://jsonplaceholder.typicode.com/users")
