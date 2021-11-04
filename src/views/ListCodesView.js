@@ -8,8 +8,8 @@ let CodesContext = React.createContext('test');
 
 function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
-        // const arr = e.detail.data.keys;
-        CodesContext = React.createContext("123");
+        const arr = e.detail.data.keys;
+        CodesContext = React.createContext(arr);
     }
 }
 
