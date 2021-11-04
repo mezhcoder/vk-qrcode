@@ -2,6 +2,8 @@ import React from "react";
 import {Div, Button, Group, Panel, View, CardGrid, Card} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
 
+const sha1 = require('js-sha256');
+
 function showFrameQR() {
     console.log("Отправлен Show");
     bridge.send("VKWebAppOpenCodeReader");
@@ -12,7 +14,7 @@ function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
         let url = e.detail.data.code_data.toString();
         console.log("URL получен: " + url);
-        bridge.send("VKWebAppStorageSet", {"key": url, "value": url + "@"});
+        bridge.send("VKWebAppStorageSet", {"key": sha1(url), "value": url});
     }
 
     if (e.detail.type === 'VKWebAppStorageSetFailed') {

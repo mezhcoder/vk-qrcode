@@ -10,7 +10,7 @@ import {useAsync} from 'react-async';
 
 
 const loadCodes = () => {
-    return new Promise((resolve, reject) => {
+    const key_codes = new Promise((resolve, reject) => {
         const fn = e => {
             if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
                 bridge.unsubscribe(fn);
@@ -21,6 +21,24 @@ const loadCodes = () => {
         bridge.send("VKWebAppStorageGetKeys", {"count": 1000, "offset": 0});
         bridge.subscribe(fn);
     });
+
+    return new Promise((resolve, reject) => {
+        const fn = e => {
+            if (e.detail.type === 'VKWebAppStorageGetResult') {
+                bridge.unsubscribe(fn);
+                resolve(e.detail.data.keys);
+            }
+        };
+
+        bridge.send("VKWebAppStorageGet", {"keys": key_codes});
+        bridge.subscribe(fn);
+    });
+
+
+
+
+
+
 };
 
 
@@ -30,11 +48,12 @@ function QRCodeView() {
     if (isLoading) return "Loading...";
     if (error) return `Error: ${error.message}`
 
+    console.log(data);
     return (
         <View activePanel="main" id="view2">
             <Panel id="main">
                 <Group>
-                    Data: {data}
+                    Data: {data.length()}
                 </Group>
             </Panel>
         </View>
