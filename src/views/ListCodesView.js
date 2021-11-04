@@ -6,12 +6,13 @@ bridge.subscribe((e) => bridgeEvent(e));
 
 function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
-        console.log("Переменные:", e.detail.data.keys);
+        const arr = e.detail.data.keys;
+        console.log("Переменные:", arr);
     }
 }
 
 function QRCodeView() {
-    bridge.send("VKWebAppStorageGetKeys", {"count": 20, "offset": 0});
+    bridge.send("VKWebAppStorageGetKeys", {"count": 549755813888, "offset": 0});
     return (
         <View activePanel="main" id="view2">
             <Panel id="main">

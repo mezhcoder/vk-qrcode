@@ -3,15 +3,15 @@ import {Div, Button, Group, Panel, PanelHeader, View, CardGrid, Card} from "@vko
 import bridge from "@vkontakte/vk-bridge";
 
 
-function send() {
+function showFrameQR() {
     bridge.send("VKWebAppOpenCodeReader");
 }
 bridge.subscribe((e) => bridgeEvent(e));
 
 function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
-        console.log("yes");
-        console.log(e.detail.data.code_data);
+        let url = e.detail.data.code_data;
+        bridge.send("VKWebAppStorageSet", {"key": url.hash(), "value": url});
     }
 }
 
@@ -23,7 +23,7 @@ function QRCodeView() {
                     <CardGrid style={{display: "flex", justifyContent: "center"}}>
                         <Card size="l" mode="shadow" style={{width: "100%"}}>
                             <div style={{ height: "50vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                                <Div onClick={() => send()}>
+                                <Div onClick={() => showFrameQR()}>
                                     <Button style={{height: "70px"}} mode="outline" size="l" >Сканировать QR код</Button>
                                 </Div>
                             </div>
