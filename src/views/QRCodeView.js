@@ -4,24 +4,25 @@ import bridge from "@vkontakte/vk-bridge";
 
 const sha1 = require('js-sha256');
 
+
+let activeQRCode = React.createContext(false);
+
 function showFrameQR() {
     console.log("Отправлен Show");
     bridge.send("VKWebAppOpenCodeReader");
 }
-
 
 function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
         let url = e.detail.data.code_data.toString();
         console.log("URL получен: " + url);
         bridge.send("VKWebAppStorageSet", {"key": sha1(url), "value": url});
+        activeQRCode = React.createContext(true);
     }
 
     if (e.detail.type === 'VKWebAppStorageSetFailed') {
         console.log(e.detail.data);
     }
-
-
 }
 
 bridge.subscribe((e) => bridgeEvent(e));
@@ -38,6 +39,7 @@ function QRCodeView() {
                                     <Button style={{height: "70px"}} mode="outline" size="l" >Сканировать QR код</Button>
                                 </Div>
                             </div>
+                            {React.useContext(activeQRCode) ? <p style={{color: "green"}}>QR код загружен</p> : ""}
                         </Card>
                     </CardGrid>
                 </Group>
