@@ -11,7 +11,6 @@ function QRCodeView() {
     return (
         <View activePanel="main" id="view1">
             <Panel id="main">
-                <PanelHeader>VK-QRCode</PanelHeader>
                 <Group>
                     <CardGrid style={{display: "flex", justifyContent: "center"}}>
                         <Card size="l" mode="shadow" style={{width: "100%"}}>
