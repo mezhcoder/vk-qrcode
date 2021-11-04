@@ -21,7 +21,7 @@ async function loadCodes() {
         bridge.send("VKWebAppStorageGetKeys", {"count": 1000, "offset": 0});
         bridge.subscribe(fn);
     });
-    console.log(key_codes);
+    if (key_codes.length === 0) return [];
 
     return await new Promise((resolve, reject) => {
         const fn = e => {
@@ -49,7 +49,14 @@ function QRCodeView() {
             <Panel id="main">
                 <Group>
                     <h1>Hello</h1>
-                    Data: {data.length()}
+                    {
+                        data.map(entry => {
+                            return (
+                             <div>
+                                 <a href={"'" + entry.value + "'"}>QR code: {entry.value}</a>
+                            </div>)
+                        })
+                    }
                 </Group>
             </Panel>
         </View>
