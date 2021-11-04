@@ -11,6 +11,7 @@ function QRCodeView() {
         if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
             const arr = e.detail.data.keys;
             setCodes(arr);
+            console.log("отправлен запрос +1");
         }
     }
 
