@@ -9,8 +9,10 @@ function send() {
 bridge.subscribe((e) => bridgeEvent(e));
 
 function bridgeEvent(e) {
-    alert(e);
-    console.log(e);
+    if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
+        console.log("yes");
+        console.log(e.detail.data.code_data);
+    }
 }
 
 function QRCodeView() {
