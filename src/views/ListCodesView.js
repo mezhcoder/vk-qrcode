@@ -11,19 +11,16 @@ import {useAsync} from 'react-async';
 
 const myFunction = () => {
     return new Promise((resolve, reject) => {
-
-        bridge.send("VKWebAppStorageGetKeys", {"count": 1000, "offset": 0});
-        bridge.subscribe((e) => bridgeEvent(e));
-        function bridgeEvent(e) {
+        const fn = e => {
             if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
-                // setCodes(e.detail.data.keys);
-                console.log("запрос +1");
-                bridge.unsubscribe(e);
-                bridge.unsubscribe(bridgeEvent);
-                bridge.unsubscribe(this);
+                console.log("go +1");
+                bridge.unsubscribe(fn);
                 resolve(e.detail.data.keys);
             }
-        }
+        };
+
+        bridge.send("VKWebAppStorageGetKeys", {"count": 1000, "offset": 0});
+        bridge.subscribe(fn);
     });
 };
 
