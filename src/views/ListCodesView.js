@@ -9,8 +9,8 @@ import {useAsync} from 'react-async';
 
 
 
-const loadCodes = () => {
-    const key_codes = new Promise((resolve, reject) => {
+async function loadCodes() {
+    const key_codes = await new Promise((resolve, reject) => {
         const fn = e => {
             if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
                 bridge.unsubscribe(fn);
@@ -23,7 +23,7 @@ const loadCodes = () => {
     });
     console.log(key_codes);
 
-    return new Promise((resolve, reject) => {
+    return await new Promise((resolve, reject) => {
         const fn = e => {
             if (e.detail.type === 'VKWebAppStorageGetResult') {
                 bridge.unsubscribe(fn);
@@ -34,7 +34,7 @@ const loadCodes = () => {
         bridge.send("VKWebAppStorageGet", {"keys": key_codes});
         bridge.subscribe(fn);
     });
-};
+}
 
 
 function QRCodeView() {
@@ -48,8 +48,8 @@ function QRCodeView() {
         <View activePanel="main" id="view2">
             <Panel id="main">
                 <Group>
-                    <h1>hi</h1>
-                    {/*Data: {data.length()}*/}
+                    <h1>Hello</h1>
+                    Data: {data.length()}
                 </Group>
             </Panel>
         </View>
