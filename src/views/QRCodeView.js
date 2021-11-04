@@ -1,6 +1,7 @@
-import React, {useContext} from "react";
+import React from "react";
 import {Div, Button, Group, Panel, View, CardGrid, Card} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
+import {useAsync} from "react-async";
 
 const sha1 = require('js-sha256');
 
@@ -9,21 +10,41 @@ function showFrameQR() {
     bridge.send("VKWebAppOpenCodeReader");
 }
 
-function bridgeEvent(e) {
-    if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
-        let url = e.detail.data.code_data.toString();
-        alert("QR код считан")
-        bridge.send("VKWebAppStorageSet", {"key": sha1(url), "value": url});
-    }
+// function bridgeEvent(e) {
+//     if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
+//         let url = e.detail.data.code_data.toString();
+//         alert("QR код считан")
+//         bridge.send("VKWebAppStorageSet", {"key": sha1(url), "value": url});
+//     }
+//
+//     if (e.detail.type === 'VKWebAppStorageSetFailed') {
+//         console.log(e.detail.data);
+//     }
+// }
 
-    if (e.detail.type === 'VKWebAppStorageSetFailed') {
-        console.log(e.detail.data);
-    }
+async function statusQRCode() {
+    return await new Promise((resolve, reject) => {
+        const fn = e => {
+            if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
+                let url = e.detail.data.code_data.toString();
+                bridge.send("VKWebAppStorageSet", {"key": sha1(url), "value": url});
+                bridge.unsubscribe(fn);
+                resolve(url);
+            }
+
+            if (e.detail.type === 'VKWebAppStorageSetFailed') {
+                console.log(e.detail.data);
+            }
+        };
+
+        bridge.subscribe(fn);
+    });
 }
 
-bridge.subscribe((e) => bridgeEvent(e));
-
 function QRCodeView() {
+    const { isLoading } = useAsync({ promiseFn: statusQRCode });
+
+
     return (
         <View activePanel="main" id="view1">
             <Panel id="main">
@@ -35,6 +56,8 @@ function QRCodeView() {
                                     <Button style={{height: "70px"}} mode="outline" size="l" >Сканировать QR код</Button>
                                 </Div>
                             </div>
+
+                            {!isLoading ? <p style={{style: "green"}}>QR код считан</p> : ""}
                         </Card>
                     </CardGrid>
                 </Group>
