@@ -2,7 +2,6 @@ import React from "react";
 import {Group, Panel, View} from "@vkontakte/vkui";
 
 
-
 function InfoQRCodesView() {
     return (
         <View activePanel="main" id="view3">

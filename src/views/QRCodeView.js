@@ -2,22 +2,23 @@ import React from "react";
 import {Div, Button, Group, Panel, View, CardGrid, Card} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
 
-import {connect} from 'react-redux'
-import {postData} from "../redux/actions";
-
 function showFrameQR() {
+    console.log("Отправлен Show");
     bridge.send("VKWebAppOpenCodeReader");
 }
-bridge.subscribe((e) => bridgeEvent(e));
+
 
 function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
         let url = e.detail.data.code_data.toString();
+        console.log("URL получен: " + url);
         bridge.send("VKWebAppStorageSet", {"key": url, "value": url});
     }
 }
 
-function QRCodeView({syncData}) {
+bridge.subscribe((e) => bridgeEvent(e));
+
+function QRCodeView() {
     return (
         <View activePanel="main" id="view1">
             <Panel id="main">
@@ -37,5 +38,4 @@ function QRCodeView({syncData}) {
     );
 }
 
-const mapDispatchToProps = { postData }
-export default connect(null, mapDispatchToProps)(QRCodeView);
+export default QRCodeView;

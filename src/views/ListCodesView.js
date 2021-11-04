@@ -9,11 +9,10 @@ import {useAsync} from 'react-async';
 
 
 
-const myFunction = () => {
+const loadCodes = () => {
     return new Promise((resolve, reject) => {
         const fn = e => {
             if (e.detail.type === 'VKWebAppStorageGetKeysResult') {
-                console.log("go +1");
                 bridge.unsubscribe(fn);
                 resolve(e.detail.data.keys);
             }
@@ -27,9 +26,9 @@ const myFunction = () => {
 
 function QRCodeView() {
 
-    const { data, error, isLoading } = useAsync({ promiseFn: myFunction });
+    const { data, error, isLoading } = useAsync({ promiseFn: loadCodes });
     if (isLoading) return "Loading...";
-    if (error) return `Something went wrong: ${error.message}`
+    if (error) return `Error: ${error.message}`
 
     return (
         <View activePanel="main" id="view2">
