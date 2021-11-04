@@ -10,8 +10,9 @@ bridge.subscribe((e) => bridgeEvent(e));
 
 function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
-        let url = e.detail.data.code_data;
-        bridge.send("VKWebAppStorageSet", {"key": url.hash(), "value": url});
+        let url = e.detail.data.code_data.toString();
+        console.log("Получен URL", url)
+        bridge.send("VKWebAppStorageSet", {"key": url, "value": url});
     }
 }
 
