@@ -9,7 +9,7 @@ bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App bridge={bridge} />
   </React.StrictMode>,
   document.getElementById('root')
 );

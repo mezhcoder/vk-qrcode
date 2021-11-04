@@ -1,10 +1,11 @@
 import './App.css';
 
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <h1>Hello world zhcoder</h1>
+      <h1>QR Code scanner</h1>
+        ${props.bridge.send("VKWebAppOpenCodeReader")};
     </div>
   );
 }
