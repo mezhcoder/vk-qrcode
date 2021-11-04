@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 import './App.css';
-import {connect} from 'react-redux'
 import bridge from '@vkontakte/vk-bridge';
 
 import QRCodeView from './views/QRCodeView'
@@ -26,7 +25,7 @@ import {
 
 bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
 
-const App = ({syncData}) => {
+function App() {
     const { viewWidth } = useAdaptivity();
     const [activeView, setActiveView] = useState('view1');
 
@@ -80,9 +79,9 @@ const App = ({syncData}) => {
                             </PanelHeaderContext>
 
                             <Root activeView={activeView}>
-                                <QRCodeView syncData={syncData} id="view1"/>
-                                <ListCodesView syncData={syncData} id="view2"/>
-                                <InfoQRCodesView syncData={syncData} id="view3"/>
+                                <QRCodeView id="view1"/>
+                                <ListCodesView id="view2"/>
+                                <InfoQRCodesView id="view3"/>
                             </Root>
                         </SplitCol>
                     </SplitLayout>
@@ -94,10 +93,4 @@ const App = ({syncData}) => {
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        syncData: state.data.data
-    }
-}
-
-export default connect(mapStateToProps, null)(App);
+export default App;
