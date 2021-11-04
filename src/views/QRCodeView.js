@@ -6,6 +6,12 @@ import bridge from "@vkontakte/vk-bridge";
 function send() {
     bridge.send("VKWebAppOpenCodeReader");
 }
+bridge.subscribe((e) => bridgeEvent(e));
+
+function bridgeEvent(e) {
+    alert(e);
+    console.log(e);
+}
 
 function QRCodeView() {
     return (

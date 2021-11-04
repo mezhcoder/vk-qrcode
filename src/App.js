@@ -20,10 +20,7 @@ import {
 import "@vkontakte/vkui/dist/vkui.css";
 import {
     Icon16Dropdown,
-    Icon16LikeOutline,
-    Icon24Done, Icon28ArticleOutline, Icon28CameraOutline, Icon28LikeOutline,
-    Icon28SettingsOutline,
-    Icon28UsersOutline, Icon28Videocam
+    Icon28ArticleOutline, Icon28CameraOutline, Icon28LikeOutline,
 } from "@vkontakte/icons";
 
 bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
