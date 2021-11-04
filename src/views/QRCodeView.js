@@ -12,8 +12,14 @@ function bridgeEvent(e) {
     if (e.detail.type === 'VKWebAppOpenCodeReaderResult') {
         let url = e.detail.data.code_data.toString();
         console.log("URL получен: " + url);
-        bridge.send("VKWebAppStorageSet", {"key": url, "value": url});
+        bridge.send("VKWebAppStorageSet", {"key": url, "value": url + "@"});
     }
+
+    if (e.detail.type === 'VKWebAppStorageSetFailed') {
+        console.log(e.detail.data);
+    }
+
+
 }
 
 bridge.subscribe((e) => bridgeEvent(e));
