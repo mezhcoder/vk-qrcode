@@ -29,7 +29,7 @@ function App() {
     bridge.send("VKWebAppShowStoryBox",
         {
             "background_type": "image",
-            "url": "https://mezhcoder.github.io/vk-qrcode/background.png",
+            "url": "https://mezhcoder.github.io/vk-qrcode/background.jpeg",
             "stickers": [
                 {
                     "sticker_type": "renderable",
@@ -37,33 +37,33 @@ function App() {
                         "can_delete": 0,
                         "content_type": "image",
                         "url": "https://mezhcoder.github.io/vk-qrcode/scticker.png",
-                        "clickable_zones": [
-                            {
-                                "action_type": "link",
-                                "action": {
-                                    "link": "https://vk.com/app7992829_561697517",
-                                    "tooltip_text_key": "tooltip_open_post"
-                                },
-                                "clickable_area": [
-                                    {
-                                        "x": 100,
-                                        "y": 110
-                                    },
-                                    {
-                                        "x": 100,
-                                        "y": 110
-                                    },
-                                    {
-                                        "x": 100,
-                                        "y": 132
-                                    },
-                                    {
-                                        "x": 100,
-                                        "y": 132
-                                    }
-                                ]
-                            }
-                        ]
+                        // "clickable_zones": [
+                        //     {
+                        //         "action_type": "link",
+                        //         "action": {
+                        //             "link": "https://vk.com/app7992829_561697517",
+                        //             "tooltip_text_key": "tooltip_open_post"
+                        //         },
+                        //         "clickable_area": [
+                        //             {
+                        //                 "x": 100,
+                        //                 "y": 110
+                        //             },
+                        //             {
+                        //                 "x": 100,
+                        //                 "y": 110
+                        //             },
+                        //             {
+                        //                 "x": 100,
+                        //                 "y": 132
+                        //             },
+                        //             {
+                        //                 "x": 100,
+                        //                 "y": 132
+                        //             }
+                        //         ]
+                        //     }
+                        // ]
                     }
                 }
             ]
