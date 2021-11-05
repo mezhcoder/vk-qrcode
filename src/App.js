@@ -39,10 +39,9 @@ function App() {
                         "url": "https://mezhcoder.github.io/vk-qrcode/sticker.png",
                         "clickable_zones": [
                             {
-                                "action_type": "link",
+                                "action_type": "app",
                                 "action": {
-                                    "link": "https://vk.com/wall-166562603_1192",
-                                    "tooltip_text_key": "tooltip_open_post"
+                                    "app_id": 7992829,
                                 },
                                 "clickable_area": [
                                     {
