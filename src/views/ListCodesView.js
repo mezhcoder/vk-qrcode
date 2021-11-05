@@ -1,7 +1,8 @@
 import React  from "react";
-import {Group, Panel, View} from "@vkontakte/vkui";
+import {Group, Headline, Link, Panel, Title, View} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
 import {useAsync} from 'react-async';
+import {Icon32CheckCircle, Icon32Crop} from "@vkontakte/icons";
 
 
 
@@ -43,21 +44,32 @@ function QRCodeView() {
     if (isLoading) return "Loading...";
     if (error) return `Error: ${error.message}`
 
-    console.log(data);
+    // const data = [
+    //     {key: "123", value: "https://vk.com/zhcoder"},
+    //     {key: "1234", value: "abc"}
+    // ];
+
     return (
         <View activePanel="main" id="view2">
             <Panel id="main">
-                <Group>
-                    <h1>Hello</h1>
-                    {
-                        data.map(entry => {
-                            return (
-                             <div>
-                                 <a href={"'" + entry.value + "'"}>QR code: {entry.value}</a>
-                            </div>)
-                        })
-                    }
-                </Group>
+                <Title level="1" weight="bold" style={{fontSize: "26px", marginBottom: "12px", marginLeft: "6px"}}>Сканированные QR коды</Title>
+
+                { data.length !== 0 ? data.map(entry => {
+                    return (
+                        <Group mode="card" style={{marginBottom: "-6px"}}>
+                            <div style={{display: "flex", alignItems: "center"}}>
+                                <Icon32CheckCircle style={{marginRight: "6px"}}/>
+                                <div className="wrapper">
+                                    <Title level="2" weight="300">QR code</Title>
+
+
+                                    Данные: { (entry.value.startsWith("https://") || entry.value.startsWith("http://")) ? <a target="_blank" rel="noreferrer" href={entry.value} style={{color: "#3F8AE0"}}> {entry.value}</a> : <span style={{color: "#3F8AE0"}}>{entry.value}</span> }
+                                </div>
+                            </div>
+                        </Group>
+                    )
+                }) : "У вас нет QR кодов."}
+
             </Panel>
         </View>
     );

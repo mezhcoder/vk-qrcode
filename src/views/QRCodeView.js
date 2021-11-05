@@ -51,13 +51,12 @@ function QRCodeView() {
                 <Group>
                     <CardGrid style={{display: "flex", justifyContent: "center"}}>
                         <Card size="l" mode="shadow" style={{width: "100%"}}>
-                            <div style={{ height: "50vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+                            <div style={{ height: "50vh", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}>
                                 <Div onClick={() => showFrameQR()}>
                                     <Button style={{height: "70px"}} mode="outline" size="l" >Сканировать QR код</Button>
                                 </Div>
+                                {!isLoading ? <p style={{color: "green"}}>QR код считан</p> : ""}
                             </div>
-
-                            {!isLoading ? <p style={{style: "green"}}>QR код считан</p> : ""}
                         </Card>
                     </CardGrid>
                 </Group>
