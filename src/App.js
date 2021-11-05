@@ -36,7 +36,7 @@ function App() {
                     "sticker": {
                         "can_delete": 0,
                         "content_type": "image",
-                        "url": "https://mezhcoder.github.io/vk-qrcode/scticker.png",
+                        "url": "https://mezhcoder.github.io/vk-qrcode/scticker.jpg",
                         "clickable_zones": [
                             {
                                 "action_type": "link",
