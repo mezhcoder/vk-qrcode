@@ -41,7 +41,8 @@ function App() {
                             {
                                 "action_type": "link",
                                 "action": {
-                                    "app_id": "7992829",
+                                    "link": "https://vk.com/wall-166562603_1192",
+                                    "tooltip_text_key": "tooltip_open_post"
                                 },
                                 "clickable_area": [
                                     {
