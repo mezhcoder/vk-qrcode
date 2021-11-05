@@ -52,7 +52,7 @@ function QRCodeView() {
     return (
         <View activePanel="main" id="view2">
             <Panel id="main">
-                <Title level="1" weight="bold" style={{fontSize: "26px", marginBottom: "12px", marginLeft: "6px"}}>Сканированные QR коды</Title>
+                <Title level="1" weight="bold" style={{marginTop: "6px", fontSize: "26px", marginBottom: "12px", marginLeft: "6px"}}>Сканированные QR коды</Title>
 
                 { data.length !== 0 ? data.map(entry => {
                     return (
@@ -61,9 +61,9 @@ function QRCodeView() {
                                 <Icon32CheckCircle style={{marginRight: "6px"}}/>
                                 <div className="wrapper">
                                     <Title level="2" weight="300">QR code</Title>
-
-
-                                    Данные: { (entry.value.startsWith("https://") || entry.value.startsWith("http://")) ? <a target="_blank" rel="noreferrer" href={entry.value} style={{color: "#3F8AE0"}}> {entry.value}</a> : <span style={{color: "#3F8AE0"}}>{entry.value}</span> }
+                                    <div style={{overflowX: "scroll"}}>
+                                        Данные: <span style={{color: "#3F8AE0"}}>{entry.value}</span>
+                                    </div>
                                 </div>
                             </div>
                         </Group>
