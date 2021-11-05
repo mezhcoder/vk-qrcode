@@ -26,7 +26,49 @@ import {
 bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
 
 function App() {
-    bridge.send("VKWebAppShowStoryBox", { "background_type" : "image", "url" : "https://sun9-65.userapi.com/c850136/v850136098/1b77eb/0YK6suXkY24.jpg" });
+    bridge.send("VKWebAppShowStoryBox",
+        {
+            "background_type": "image",
+            "url": "https://sun9-65.userapi.com/c850136/v850136098/1b77eb/0YK6suXkY24.jpg",
+            "stickers": [
+                {
+                    "sticker_type": "renderable",
+                    "sticker": {
+                        "can_delete": 0,
+                        "content_type": "image",
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Dialog.png",
+                        "clickable_zones": [
+                            {
+                                "action_type": "link",
+                                "action": {
+                                    "link": "https://vk.com/wall-166562603_1192",
+                                    "tooltip_text_key": "tooltip_open_post"
+                                },
+                                "clickable_area": [
+                                    {
+                                        "x": 17,
+                                        "y": 110
+                                    },
+                                    {
+                                        "x": 97,
+                                        "y": 110
+                                    },
+                                    {
+                                        "x": 97,
+                                        "y": 132
+                                    },
+                                    {
+                                        "x": 17,
+                                        "y": 132
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    );
 
     const { viewWidth } = useAdaptivity();
     const [activeView, setActiveView] = useState('view1');
