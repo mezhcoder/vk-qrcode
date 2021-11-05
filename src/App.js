@@ -26,6 +26,8 @@ import {
 bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
 
 function App() {
+    bridge.send("VKWebAppShowStoryBox", { "background_type" : "image", "url" : "https://sun9-65.userapi.com/c850136/v850136098/1b77eb/0YK6suXkY24.jpg" });
+
     const { viewWidth } = useAdaptivity();
     const [activeView, setActiveView] = useState('view1');
 
