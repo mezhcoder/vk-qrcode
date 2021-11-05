@@ -37,17 +37,20 @@ async function loadCodes() {
     });
 }
 
+const copyToClipboard = (content) => {
+    const el = document.createElement('textarea');
+    el.value = content;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+};
 
 function QRCodeView() {
 
     const { data, error, isLoading } = useAsync({ promiseFn: loadCodes });
     if (isLoading) return "Loading...";
     if (error) return `Error: ${error.message}`
-
-    // const data = [
-    //     {key: "123", value: "https://vk.com/zhcoder"},
-    //     {key: "1234", value: "abc"}
-    // ];
 
     return (
         <View activePanel="main" id="view2">
@@ -62,7 +65,7 @@ function QRCodeView() {
                                 <div className="wrapper">
                                     <Title level="2" weight="300">QR code</Title>
                                     <div style={{overflowX: "scroll"}}>
-                                        Данные: <span style={{color: "#3F8AE0"}}>{entry.value}</span>
+                                        Данные: <span onClick={() => copyToClipboard(entry.value)} style={{color: "#3F8AE0"}}>{entry.value}</span>
                                     </div>
                                 </div>
                             </div>
