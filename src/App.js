@@ -20,12 +20,12 @@ import {
 import "@vkontakte/vkui/dist/vkui.css";
 import {
     Icon16Dropdown,
-    Icon28ArticleOutline, Icon28CameraOutline, Icon28LikeOutline,
+    Icon28ArticleOutline, Icon28CameraOutline, Icon28LikeOutline, Icon28StoryOutline,
 } from "@vkontakte/icons";
 
 bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
 
-function App() {
+function sendStickerInStory() {
     bridge.send("VKWebAppShowStoryBox",
         {
             "background_type": "image",
@@ -68,6 +68,10 @@ function App() {
             ]
         }
     );
+}
+
+function App() {
+
 
     const { viewWidth } = useAdaptivity();
     const [activeView, setActiveView] = useState('view1');
@@ -117,6 +121,14 @@ function App() {
                                         data-mode="managed"
                                     >
                                         Количество QR кодов
+                                    </Cell>
+
+                                    <Cell
+                                        before={<Icon28StoryOutline />}
+                                        onClick={() => {setActivePanel(false); sendStickerInStory()}}
+                                        data-mode="managed"
+                                    >
+                                        Добавить стикер в story ⭐️
                                     </Cell>
                                 </List>
                             </PanelHeaderContext>
