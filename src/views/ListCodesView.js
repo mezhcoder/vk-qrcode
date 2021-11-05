@@ -1,8 +1,8 @@
 import React  from "react";
-import {Group, Headline, Link, Panel, Title, View} from "@vkontakte/vkui";
+import {Group, Panel, Title, View} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
 import {useAsync} from 'react-async';
-import {Icon32CheckCircle, Icon32Crop} from "@vkontakte/icons";
+import {Icon32CheckCircle } from "@vkontakte/icons";
 
 
 

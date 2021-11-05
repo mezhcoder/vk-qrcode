@@ -28,37 +28,37 @@ bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
 function App() {
     bridge.send("VKWebAppShowStoryBox",
         {
-            "background_type": "image",
-            "url": "https://sun9-65.userapi.com/c850136/v850136098/1b77eb/0YK6suXkY24.jpg",
+            "background_type": "none",
+            "url": "",
             "stickers": [
                 {
                     "sticker_type": "renderable",
                     "sticker": {
                         "can_delete": 0,
                         "content_type": "image",
-                        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Dialog.png",
+                        "url": "https://mezhcoder.github.io/vk-qrcode/scticker.png",
                         "clickable_zones": [
                             {
                                 "action_type": "link",
                                 "action": {
-                                    "link": "https://vk.com/wall-166562603_1192",
+                                    "link": "https://vk.com/app7992829_561697517",
                                     "tooltip_text_key": "tooltip_open_post"
                                 },
                                 "clickable_area": [
                                     {
-                                        "x": 17,
+                                        "x": 100,
                                         "y": 110
                                     },
                                     {
-                                        "x": 97,
+                                        "x": 100,
                                         "y": 110
                                     },
                                     {
-                                        "x": 97,
+                                        "x": 100,
                                         "y": 132
                                     },
                                     {
-                                        "x": 17,
+                                        "x": 100,
                                         "y": 132
                                     }
                                 ]
