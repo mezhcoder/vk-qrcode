@@ -28,8 +28,8 @@ bridge.send("VKWebAppInit", {}).then(r => console.log("Bridge:" , r));
 function App() {
     bridge.send("VKWebAppShowStoryBox",
         {
-            "background_type": "none",
-            "url": "",
+            "background_type": "image",
+            "url": "https://mezhcoder.github.io/vk-qrcode/background.png",
             "stickers": [
                 {
                     "sticker_type": "renderable",
