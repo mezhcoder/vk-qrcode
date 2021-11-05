@@ -1,5 +1,5 @@
 import React from "react";
-import {Group, Panel, View} from "@vkontakte/vkui";
+import {Group, Panel, Title, View} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge";
 import {useAsync} from "react-async";
 
@@ -40,9 +40,9 @@ function InfoQRCodesView() {
         <View activePanel="main" id="view3">
             <Panel id="main">
                 <Group>
-                    <h1>Количество QR кодов</h1>
+                    <Title level="1" weight="bold" style={{marginTop: "6px", fontSize: "26px", marginBottom: "12px", marginLeft: "6px"}}>Количество QR кодов</Title>
                     <p>
-                        <b>{data.length}</b> шт.
+                        <b style={{marginLeft: "6px"}}>{data.length}</b> шт.
                     </p>
                 </Group>
             </Panel>
